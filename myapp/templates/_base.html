@@ -4,32 +4,80 @@
 <!DOCTYPE html>
 <html lang="en">
  
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content=
-        "width=device-width, initial-scale=1.0">
-    <title>
-        {% block title %}
-            Untitled
-        {% endblock %}
-    </title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap" rel="stylesheet">
- 
-    {% compress css %}
-    <link rel="stylesheet"
-        href="{% static 'src/output.css' %}">
-    {% endcompress %}
- 
-</head>
- 
-<body>
-    <div class="container mt-4 mx-auto px-4 pt-4">
-        {% block content %}
-        {% endblock content %}
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content=
+            "width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+                Untitled
+            {% endblock %}
+        </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap" rel="stylesheet">
+    
+        {% compress css %}
+        <link rel="stylesheet"
+            href="{% static 'src/output.css' %}">
+        {% endcompress %}
+    
+    </head>
+    
+    <body>
+        <div class="container mt-4 mx-auto px-4 pt-4">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+
+    <script>
+        const text = document.getElementById('text');
+        const button = document.getElementById('button');
+        const result = document.getElementById('result');
+        const result1 = document.getElementById('result1')
+        const table = document.getElementById('table');
+        const monthList = [
+            'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+            'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+        ];
+        
+        function change(){
+            text.style.color = 'red';
+        }
+
+        function getTime(){
+            let today = new Date();
+            let day = today.getDate();
+            let month = today.getMonth();
+            let year = today.getFullYear();
+            let hour = today.getHours();
+            let min = today.getMinutes();
+            let sec = today.getSeconds();
+            if (hour < 10){
+                hour = `0${hour}`
+            }
+            if (min < 10){
+                min = `0${min}`
+            }
+            if (sec < 10){
+                sec = `0${sec}`
+            }
+
+            result1.innerText = `${day} ${monthList[month]} ${year + 543} ${hour}:${min}:${sec} น.`
+            result.innerText = today
+        }
+
+        setInterval(getTime, 1000)
+
+        function show() {
+            table.style.opacity = 1;
+        }
+
+        function hide() {
+            table.style.opacity = 0;
+        }
+    </script>
  
 </html>
