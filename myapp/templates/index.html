@@ -1,14 +1,94 @@
 {% extends "_base.html" %}
  
+{% block title %}
+    Main page
+{% endblock %}
 {% block content %}
-    <style>
-        .head {
-            font-size: 4rem;
-            padding-bottom: 4rem;
-            padding-top: 2rem;
-            color: white;
+
+    <header class="lg:px-16 px-4 bg-white flex flex-wrap items-center py-4 shadow-md">
+        <div class="flex-1 flex justify-between items-center">
+            <a href="#" class="text-xl">Company</a>
+        </div>
+
+        <label for="menu-toggle" class="pointer-cursor md:hidden block">
+          <svg class="fill-current text-gray-900"
+            xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+            <title>menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+          </svg>
+        </label>
+        <input class="hidden" type="checkbox" id="menu-toggle" />
+
+        <div class="hidden md:flex md:items-center md:w-auto w-full" id="menu">
+            <nav>
+                <ul class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
+                    <li><a class="md:p-4 py-3 px-0 block" href="#">AboutUs</a></li>
+                    <li><a class="md:p-4 py-3 px-0 block" href="#">Treatments</a></li>
+                    <li><a class="md:p-4 py-3 px-0 block" href="#">Blog</a></li>
+                    <li><a class="md:p-4 py-3 px-0 block md:mb-0 mb-2" href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="box-border w-32 h-32 border-4 border-slate-500 p-10 rounded font-pixel">
+        <p class="text-center">hello</p>
+    </div>
+    <div class="box-content w-32 h-auto border-4 p-4 mt-4 border-slate-500 font-pixel">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam asperiores possimus saepe voluptatem rerum error deleniti eum cupiditate praesentium minima veniam, tenetur vero non suscipit, recusandae veritatis expedita autem omnis quo accusamus? Alias adipisci asperiores aperiam nisi saepe qui est enim assumenda pariatur, debitis, praesentium ipsa excepturi. Tempore, ipsam. Doloremque!
+    </div>
+    <div class="flex gap-2 p-4 justify-evenly">
+      <div class="p-4 text-white bg-red-500">1</div>
+      <div class="p-4 text-white bg-red-500">2</div>
+      <div class="p-4 text-white bg-red-500">3</div>
+      <div class="p-4 text-white bg-red-500">4</div>
+      <div class="p-4 text-white bg-red-500">5</div>
+      <div class="p-4 text-white bg-red-500">6</div>
+    </div>
+
+    <div class="color-change text-center">
+        <h1 id="text" class="text-2xl py-2 px-4 font-pixel">hello world</h1>
+        <button onclick="change()" id="button" class="font-pixel text-white bg-blue-500 hover:bg-blue-700 rounded" style="padding: 0.5rem 1rem">click me</button>
+    </div>
+
+    <div class="date-time text-center py-3">
+        <p id="result" class="text-3xl"></p>
+    </div>
+
+    <script>
+        const text = document.getElementById('text');
+        const button = document.getElementById('button');
+        const result = document.getElementById('result');
+        const monthList = [
+            'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+            'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+        ];
+        
+        function change(){
+            text.style.color = 'red';
         }
-    </style>
-    <h1 class="text-3xl text-white-800 head text-center">Hello Tailwind CSS</h1>
+
+        function getTime(){
+            let today = new Date();
+            let day = today.getDay();
+            let month = today.getMonth();
+            let year = today.getFullYear();
+            let hour = today.getHours();
+            let min = today.getMinutes();
+            let sec = today.getSeconds();
+            if (hour < 10){
+                hour = `0${hour}`
+            }
+            if (min < 10){
+                min = `0${min}`
+            }
+            if (sec < 10){
+                sec = `0${sec}`
+            }
+
+            result.innerText = `${day} ${monthList[month]} ${year} ${hour}:${min}:${sec}`
+        }
+
+        setInterval(getTime, 1000)
+    </script>
 
 {% endblock content %}

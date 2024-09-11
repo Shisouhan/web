@@ -2,8 +2,14 @@ module.exports = {
       content: [
           './templates/**/*.html'
       ],
+      darkMode: 'media',
       theme: {
-        extend: {},
+        extend: {
+          fontFamily: {
+            angsana: ["Angsana New"],
+            pixel: ["Handjet"]
+          }
+        },
       },
       plugins: [],
 }
